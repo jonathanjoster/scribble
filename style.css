@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* body {
+  color: #eee;
+  background-color: black;
+  font-family: "Cormorant Garamond", serif;
+  transition: background-color 600ms;
+}
+
+.container {
+  display: flex;
+}
+.container .edge {
+  background-color: #112;
+  height: 100vh;
+  width: 5vw;
+}
+.container .main {
+  width: 90vw;
+}
+.container .main .wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  font-size: 6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  word-break: keep-all;
+}
+
+.box {
+  height: 50vh;
+  width: 50vh;
+}
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 500ms;
+}
