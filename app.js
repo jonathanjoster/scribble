@@ -1,8 +1,13 @@
+const audios = [new Audio('img/sl_c.mp3'), new Audio('img/sl_c.mp3')];
 window.onload = () => {
-  setTimeout(playAudioLoop, 1200);
-  show();
+  for (a of audios) {
+    a.load();
+  }
+  setTimeout(() => {
+    setTimeout(playAudioLoop, 1200);
+    show();
+  }, 1000);
 }
-const musicDuration = 4000;
 
 function show() {
   const imgs = document.querySelectorAll('img');
@@ -31,6 +36,7 @@ function changeText() {
   }
   text.innerText = lastP = p[r];
 }
+const musicDuration = 4000;
 let lastP = 'Memories';
 let textTimerId;
 setTimeout(() => {
@@ -39,7 +45,6 @@ setTimeout(() => {
   }, musicDuration)
 }, 1200)
 
-const audios = [new Audio('img/sl_c.mp3'), new Audio('img/sl_c.mp3')];
 let audioTimerId;
 function playAudioLoop() {
     audios[0].play();
