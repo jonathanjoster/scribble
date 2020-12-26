@@ -1,3 +1,4 @@
+$viewDuration: 600ms;
 * {
   margin: 0;
   padding: 0;
@@ -6,29 +7,47 @@
     color: #eee;
     background-color: black;
     font-family: 'Cormorant Garamond', serif;
-    transition: background-color 600ms;
+    transition: background-color $viewDuration;
   }
 }
 
-.container {
+.btn {
+  position: absolute;
+  top: 33%;
+  left: 22%;
+  visibility: hidden;
+  cursor: pointer;
+  z-index: 1;
+  transform: skew(10deg, 30deg);
+  padding: .5rem;
+  background-color: gold;
+}
+
+.bar {
+  background-color: white;
+  position: absolute;
+  width: 10px;
+  height: 100vh;
+  left: 50%;
+  top: 0%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity $viewDuration;
+}
+.bar-1 {
+  transform: skew(-60deg, 0deg);
+}
+.bar-2 {
+  transform: skew(60deg, 0deg);
+}
+
+.wrapper {
   display: flex;
-  $edgeWidth: 5vw;
-  .edge {
-    background-color: #112;
-    height: 100vh;
-    width: $edgeWidth;
-  }
-  .main {
-    width: 100vw-2*$edgeWidth;
-    .wrapper {
-      display: flex;
-      justify-content: center;
-    }
-  }
+  justify-content: center;
 }
 
 .text {
-  font-size: 6rem;
+  font-size: 7vw;
   position: absolute;
   top: 50%;
   left: 50%;

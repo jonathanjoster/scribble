@@ -3,12 +3,31 @@ window.onload = () => {
   for (a of audios) {
     a.load();
   }
-  setTimeout(() => {
-    setTimeout(playAudioLoop, 1200);
-    show();
-  }, 1000);
 }
+let stoppable = false;
 
+// button
+const musicDuration = 4000;
+let textTimerId;
+const btn = document.querySelector('.btn');
+setTimeout(() => {
+  btn.style.visibility = 'initial';
+}, 1000);
+btn.addEventListener('click', () => {
+  btn.style.visibility = 'hidden';
+  setTimeout(playAudioLoop, 1200);
+  show();
+  setTimeout(() => {
+    textTimerId = setInterval(() => {
+      changeText();
+    }, musicDuration)
+    setTimeout(() => {
+      stoppable = true;
+    }, musicDuration*1);
+  }, 1200);
+});
+
+// show pictures
 function show() {
   const imgs = document.querySelectorAll('img');
   for (let i=0; i<imgs.length; i++) {
@@ -18,6 +37,8 @@ function show() {
   }
 }
 
+// change text
+let lastP = 'Memories';
 function changeText() {
   const text = document.querySelector('.text');
   const p = [
@@ -29,37 +50,34 @@ function changeText() {
     'sup',
     '????'
   ];
-  
   let r = Math.floor(Math.random()*p.length);
   while (p[r] === lastP) {
     r = Math.floor(Math.random()*p.length);
   }
   text.innerText = lastP = p[r];
 }
-const musicDuration = 4000;
-let lastP = 'Memories';
-let textTimerId;
-setTimeout(() => {
-  textTimerId = setInterval(() => {
-    changeText();
-  }, musicDuration)
-}, 1200)
 
+// audio
 let audioTimerId;
 function playAudioLoop() {
-    audios[0].play();
-    let i = 1;
-    audioTimerId = setInterval(function(){
-        audios[i].play();
-        i = i==0 ? 1 : 0;
-    }, musicDuration);
+  audios[0].play();
+  let i = 1;
+  audioTimerId = setInterval(function(){
+    audios[i].play();
+    i = i==0 ? 1 : 0;
+  }, musicDuration);
 }
 
+// stop audios
 document.querySelector('.stop').addEventListener('click', () => {
+  if (!stoppable) { return; }
   clearInterval(textTimerId);
   document.body.style.backgroundColor = 'rgb(255, 51, 51)';
   for (a of audios) {
     clearInterval(audioTimerId);
     a.pause();
+    document.querySelectorAll('.bar').forEach(b => {
+      b.style.opacity = 'initial';
+    });
   }
-})
+});
