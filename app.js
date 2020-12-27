@@ -44,9 +44,9 @@ function changeText() {
   const p = [
     'Memories',
     'Love you',
-    'Hate you',
+    'Never.',
     'あ',
-    'I need help',
+    'Do you want?',
     'sup',
     '????'
   ];
